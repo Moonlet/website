@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "appAssociation": "AUTO",
+      "target": "website",
+      "public": "website/moonlet.xyz",
+      "rewrites": [
+        { 
+            "source": "/links/**", 
+            "dynamicLinks": true 
+        },
+        {
+            "source": "/wp-json/**",
+            "function": "wpProxy"
+        }
+      ]
+    }
+  ]
+}

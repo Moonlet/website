@@ -1,0 +1,30 @@
+{
+  "name": "moonlet-cloud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "scrape": "rm -rf website/moonlet.xyz && node scripts/scrape-website.js",
+    "serve": "http-server website/moonlet.xyz -p 443 --ssl --cert utils/cert.pem --key utils/key.pem",
+    "deploy": "firebase deploy --only hosting:website"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cryptolandtech/moonlet-cloud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cryptolandtech/moonlet-cloud/issues"
+  },
+  "homepage": "https://github.com/cryptolandtech/moonlet-cloud#readme",
+  "devDependencies": {
+    "agentkeepalive": "^4.0.2",
+    "cheerio": "^1.0.0-rc.3",
+    "evil-dns": "^0.2.0",
+    "firebase-tools": "^6.9.2",
+    "http-server": "^0.11.1",
+    "request": "^2.88.0",
+    "shelljs": "^0.8.3"
+  }
+}
