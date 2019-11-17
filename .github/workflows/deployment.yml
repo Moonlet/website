@@ -20,8 +20,10 @@ jobs:
       run: npm i
     - name: Scrape website
       run: npm run scrape
-#     - name: Deploy to Firebase
-#       run: npm run deploy
+    - name: Deploy to Firebase
+      run: npm run deploy
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}} 
     - name: Create release zip file
       run: mkdir -p release && zip -r release/website-${GITHUB_REF##*/} website/
     - uses: AButler/upload-release-assets@v2.0
