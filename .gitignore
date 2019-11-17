@@ -2,3 +2,5 @@ node_modules
 package-lock.json
 website
 .firebase
+.history
+.DS_Store

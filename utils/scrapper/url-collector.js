@@ -42,18 +42,44 @@ const setUrlFilter = (fn) => {
 }
 
 const fixUrl = (url, parent) => {
-    let oldUrl = url;
+    let oldUrl = url = url.replace(/^\/\//,'https://');
     parent = URL.parse(parent || "");
     url = URL.parse(url);
 
-    ['protocol', 'host', 'pathname'].map(prop => {
+    ['protocol', 'host'].map(prop => {
         if (!url[prop] && parent[prop]) {
             url[prop] = parent[prop];
         }
     });
 
+    if (!url.pathname && parent.pathname) {
+        url.pathname = parent.pathname;
+    }
+
     if (!url.pathname) {
         url.pathname = '/';
+    }
+
+    // remove .. and . from pathname
+    if (!url.pathname.startsWith('/')) {
+        let path = parent.pathname.split('/');
+        // if parent is a file remove the file from path
+        if (parent.pathname.match(/.*\.[a-z0-9]*$/)) {
+            path.pop();
+        }
+        path.push(...url.pathname.split('/'));
+        url.pathname = path
+            .filter(Boolean)
+            .reduce((acc, p) => {
+                if (p === '.') return acc;
+                if (p === '..') {
+                    acc.pop();
+                    return acc;
+                }
+                acc.push(p);
+                return acc;
+            }, [])
+            .join('/');
     }
 
     url.hash = null;
