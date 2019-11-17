@@ -23,7 +23,7 @@ jobs:
 #     - name: Deploy to Firebase
 #       run: npm run deploy
     - name: Create release zip file
-      run: mkdir -p release && zip --junk-paths release/website-${GITHUB_REF##*/} package.json
+      run: mkdir -p release && zip -r release/website-${GITHUB_REF##*/} website/
     - uses: AButler/upload-release-assets@v2.0
       with:
         files: 'release/*'
