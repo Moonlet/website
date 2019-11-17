@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-
+    name: Scrape & Deploy
     runs-on: ubuntu-latest
 
     strategy:
@@ -23,7 +23,7 @@ jobs:
 #     - name: Deploy to Firebase
 #       run: npm run deploy
     - run: mkdir -p release && zip --junk-paths release/website-${GITHUB_REF##*/} package.json
-    - uses: AButler/upload-release-assets@v1.0
+    - uses: AButler/upload-release-assets@v2.0
       with:
         files: 'release/*'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
