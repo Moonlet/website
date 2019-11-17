@@ -13,7 +13,9 @@ scrapper({
         
         'https://moonlet.xyz/thank-you/',
         'https://moonlet.xyz/thank-you-update/',
-        'https://moonlet.xyz/thank-you-delete/'
+        'https://moonlet.xyz/thank-you-delete/',
+        
+        'https://moonlet.xyz/wp-content/plugins/gdpr-cookie-compliance/dist/scripts/lity.js'
     ],
     dest: './website/moonlet.xyz',
     urlFilter: (url) => (url || "").startsWith('https://moonlet.xyz')
