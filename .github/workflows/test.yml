@@ -10,6 +10,9 @@ jobs:
       - run: ls
       - run: node -e "throw new Error('asd')"
       - run: ls -l
-      - name: test failure
-        run: ls -l
-        if: failure()
+      - name: Discord failure notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        uses: Ilshidur/action-discord@master
+        with:
+          args: 'The website deployment has failed. See results here: https://github.com/Moonlet/website/actions'
