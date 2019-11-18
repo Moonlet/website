@@ -1,0 +1,14 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: ls
+      - run: node -e "throw new Error('asd')"
+      - run: ls -l
+      - name: test failure
+        if: failure()
