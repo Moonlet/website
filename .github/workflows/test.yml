@@ -11,6 +11,7 @@ jobs:
       - run: node -e "throw new Error('asd')"
       - run: ls -l
       - name: Discord failure notification
+        if: failure()
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         uses: Ilshidur/action-discord@master
