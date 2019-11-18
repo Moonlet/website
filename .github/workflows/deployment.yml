@@ -14,6 +14,12 @@ jobs:
         node-version: [10.x]
 
     steps:
+    - name: Discord start notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'The website deployment has started.'
     - name: Checkout
       uses: actions/checkout@v1
     - name: Install dependencies
@@ -24,9 +30,30 @@ jobs:
       run: npm run deploy
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN}} 
+    - name: Discord failure notification
+      if: failure()
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'The website deployment has failed. See results here: https://github.com/Moonlet/website/actions'
+    - name: Discord failure notification
+      if: success()
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'The website deployment has finished successfully.'  
     - name: Create release zip file
       run: mkdir -p release && zip -r release/website-${GITHUB_REF##*/} website/
     - uses: AButler/upload-release-assets@v2.0
       with:
         files: 'release/*'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Discord failure notification
+      if: cancelled()
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'The website deployment has been canceled. More details here: https://github.com/Moonlet/website/actions'  
