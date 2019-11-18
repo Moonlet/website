@@ -11,4 +11,5 @@ jobs:
       - run: node -e "throw new Error('asd')"
       - run: ls -l
       - name: test failure
+        run: ls -l
         if: failure()
