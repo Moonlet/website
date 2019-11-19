@@ -37,7 +37,7 @@ jobs:
       uses: Ilshidur/action-discord@master
       with:
         args: 'The website deployment has failed. See results here: https://github.com/Moonlet/website/actions'
-    - name: Discord failure notification
+    - name: Discord success notification
       if: success()
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
@@ -50,7 +50,7 @@ jobs:
       with:
         files: 'release/*'
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Discord failure notification
+    - name: Discord cancel notification
       if: cancelled()
       env:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
