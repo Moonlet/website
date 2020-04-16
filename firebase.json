@@ -5,13 +5,9 @@
       "target": "website",
       "public": "website/moonlet.xyz",
       "rewrites": [
-        { 
-            "source": "/links/**", 
-            "dynamicLinks": true 
-        },
         {
-            "source": "/wp-json/**",
-            "function": "wpProxy"
+          "source": "/wp-json/**",
+          "function": "wpProxy"
         }
       ]
     }

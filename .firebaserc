@@ -1,12 +1,20 @@
 {
   "projects": {
-    "default": "moonlet-wallet"
+    "default": "moonlet-wallet",
+    "moonlet-wallet-live": "moonlet-wallet-live"
   },
   "targets": {
     "moonlet-wallet": {
       "hosting": {
         "website": [
           "moonlet-website"
+        ]
+      }
+    },
+    "moonlet-wallet-live": {
+      "hosting": {
+        "website": [
+          "moonlet-wallet-live"
         ]
       }
     }
