@@ -5,7 +5,9 @@ const { scrapper } = require("../utils/scrapper");
 evilDns.add("wp.moonlet.xyz", "212.146.84.81");
 
 const urlFix = (data) => {
-  return data.replace(/wp\.moonlet\.xyz/gi, "moonlet.io");
+  return data
+    .replace(/wp\.moonlet\.xyz/gi, "moonlet.io")
+    .replace(/moonlet\.xyz/gi, "moonlet.io");
 };
 
 scrapper({
