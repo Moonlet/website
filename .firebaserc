@@ -14,7 +14,7 @@
     "moonlet-wallet-live": {
       "hosting": {
         "website": [
-          "moonlet-wallet-live"
+          "moonlet-wallet-website"
         ]
       }
     }
