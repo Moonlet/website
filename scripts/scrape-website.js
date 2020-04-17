@@ -22,6 +22,12 @@ scrapper({
 
     "https://wp.moonlet.xyz/wp-content/plugins/gdpr-cookie-compliance/dist/scripts/lity.js",
   ],
+  requestOptions: {
+    auth: {
+      user: process.env.WP_SITE_USER,
+      pass: process.env.WP_SITE_PASS,
+    },
+  },
   dest: "./website/moonlet.xyz",
   urlFilter: (url) => (url || "").startsWith("https://wp.moonlet.xyz"),
   fileModifiers: {

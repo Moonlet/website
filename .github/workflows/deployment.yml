@@ -28,6 +28,9 @@ jobs:
           cd functions && npm i
       - name: Scrape website
         run: npm run scrape
+        env:
+          WP_SITE_USER: ${{ secrets.WP_SITE_USER}}
+          WP_SITE_PASS: ${{ secrets.WP_SITE_PASS}}
       - name: Deploy to Firebase
         run: npm run deploy
         env:

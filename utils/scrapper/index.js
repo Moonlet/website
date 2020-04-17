@@ -13,15 +13,18 @@ const keepAliveAgent = new Agent({
   freeSocketTimeout: 30000, // free socket keepalive for 30 seconds
 });
 
-const getUrl = (url, fileName) => {
+const getUrl = (url, fileName, options = {}) => {
   return new Promise((resolve, reject) => {
     request
       .get(
         url,
-        {
-          agent: keepAliveAgent,
-          strictSSL: false,
-        },
+        Object.assign(
+          {
+            agent: keepAliveAgent,
+            strictSSL: false,
+          },
+          options
+        ),
         (err, response, body) => {
           if (err) {
             return reject({ err, response });
@@ -51,7 +54,7 @@ const scrapper = async (options) => {
       let f = urlCollector.getUrl(nextUrl);
       let file = path.normalize(options.dest + f.fileName);
       shell.mkdir("-p", path.dirname(file));
-      let req = await getUrl(nextUrl, file);
+      let req = await getUrl(nextUrl, file, options.requestOptions || {});
 
       let fileContent = req.body;
 
