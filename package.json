@@ -6,7 +6,7 @@
   "scripts": {
     "scrape": "rm -rf website/moonlet.xyz && node scripts/scrape-website.js",
     "serve": "http-server website/moonlet.xyz -p 443 --ssl --cert utils/cert.pem --key utils/key.pem",
-    "deploy": "firebase deploy -P moonlet-wallet-live"
+    "deploy": "firebase deploy --only hosting -P moonlet-wallet-live"
   },
   "repository": {
     "type": "git",
