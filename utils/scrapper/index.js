@@ -127,8 +127,10 @@ const scrapper = async (options) => {
 
 const applyModifiers = (file, fn, data, ...params) => {
   if (data && typeof fn === "function") {
-    const fileContent = fn(data, ...params);
-    fs.writeFileSync(file, fileContent);
+    setTimeout(() => {
+      const fileContent = fn(data, ...params);
+      fs.writeFileSync(file, fileContent);
+    }, 3000);
   }
 };
 
