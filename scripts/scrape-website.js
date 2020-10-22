@@ -2,7 +2,7 @@ const evilDns = require("evil-dns");
 const { scrapper } = require("../utils/scrapper");
 
 // String match
-evilDns.add("wp.moonlet.xyz", "212.146.84.81");
+evilDns.add("wp.moonlet.xyz", "85.9.35.187");
 
 const urlFix = (data) => {
   return data
